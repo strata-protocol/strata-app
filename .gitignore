@@ -31,3 +31,6 @@ Thumbs.db
 # Local scratch
 tmp/
 scratch/
+# Scratch directory used by scripts/generate-sdk.sh. Removed on exit, but
+# ignored so an interrupted run cannot leave it staged.
+.generate-sdk-scratch/

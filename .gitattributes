@@ -1,0 +1,16 @@
+# Normalise line endings.
+#
+# Git for Windows commonly sets core.autocrlf=true, which would check shell
+# scripts out with CRLF and break `bash -n` and every `scripts/*.sh` run. This
+# forces LF in the working tree for every text file, on every platform, so what
+# a contributor runs matches what CI runs.
+* text=auto eol=lf
+
+# Binary assets are never normalised.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
