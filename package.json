@@ -1,0 +1,40 @@
+{
+  "name": "strata-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only dashboard and typed SDK for the Strata tranche wrapper on Stellar Soroban. UNAUDITED. TESTNET ONLY.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  },
+  "workspaces": [
+    "sdk",
+    "dashboard",
+    "scripts"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "check": "npm run lint && npm run typecheck && npm run build && npm run test",
+    "generate:sdk": "bash scripts/generate-sdk.sh",
+    "check:drift": "bash scripts/check-deployment-drift.sh",
+    "snapshot": "npm run snapshot --workspace scripts"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1"
+  }
+}

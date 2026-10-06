@@ -1,0 +1,34 @@
+{
+  "name": "strata-sdk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Typed read-only SDK for the Strata epoch manager on Stellar Soroban testnet. UNAUDITED. TESTNET ONLY.",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "typecheck": "tsc --noEmit --project tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --dir test --testNamePattern . --include \"test/**/*.integration.test.ts\" --passWithNoTests"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "17.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.4",
+    "typescript": "6.0.3",
+    "vitest": "5.0.3"
+  }
+}

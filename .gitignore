@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment and secrets. This repository contains no keys and must never
+# contain any. These patterns exist so that a local .env or a stray Stellar
+# identity file cannot be committed by accident.
+.env
+.env.*
+!.env.example
+.stellar/
+
+# Logs and caches
+*.log
+npm-debug.log*
+.vite/
+coverage/
+.eslintcache
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local scratch
+tmp/
+scratch/
