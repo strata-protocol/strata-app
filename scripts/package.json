@@ -6,7 +6,8 @@
   "description": "Developer scripts for the Strata app: SDK generation, deployment-drift check and epoch snapshots. UNAUDITED. TESTNET ONLY.",
   "license": "Apache-2.0",
   "scripts": {
-    "snapshot": "tsx snapshot-epoch.ts"
+    "snapshot": "tsx snapshot-epoch.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "strata-sdk": "*"

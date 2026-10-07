@@ -1,0 +1,35 @@
+name: Live testnet integration
+
+# Manual only. This talks to the deployed testnet contract, so it cannot be a
+# required check: a testnet reset or an RPC outage would otherwise block every
+# pull request. Run it from the Actions tab when you want to confirm the app
+# still agrees with the chain.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration:
+    name: testnet-integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the SDK
+        run: npm run build --workspace strata-sdk
+
+      - name: Run live integration tests
+        run: npm run test:integration
