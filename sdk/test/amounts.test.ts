@@ -86,9 +86,9 @@ describe('formatAmount', () => {
       '10000000000000000000.0000000',
     );
     // and it round-trips
-    expect(
-      parseAmount(formatAmount(MAX_PRINCIPAL_BASE_UNITS, XLM_DECIMALS), XLM_DECIMALS),
-    ).toBe(MAX_PRINCIPAL_BASE_UNITS);
+    expect(parseAmount(formatAmount(MAX_PRINCIPAL_BASE_UNITS, XLM_DECIMALS), XLM_DECIMALS)).toBe(
+      MAX_PRINCIPAL_BASE_UNITS,
+    );
   });
 
   it('formats negatives', () => {
