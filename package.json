@@ -25,7 +25,9 @@
     "check": "npm run lint && npm run typecheck && npm run build && npm run test",
     "generate:sdk": "bash scripts/generate-sdk.sh",
     "check:drift": "bash scripts/check-deployment-drift.sh",
-    "snapshot": "npm run snapshot --workspace scripts"
+    "test:integration": "npm run test:integration --workspace strata-sdk",
+    "snapshot": "npm run snapshot --workspace scripts --",
+    "credits:link": "npm run credits:link --workspace scripts --"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

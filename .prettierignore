@@ -5,3 +5,6 @@ coverage/
 package-lock.json
 sdk/src/generated/
 *.md
+# The pinned deployment is a verbatim copy of the contracts repo's file and is
+# compared byte-for-byte by the drift check. Formatting it would break that.
+sdk/src/deployments.testnet.json

@@ -1,0 +1,42 @@
+name: Deployment drift
+
+# Deliberately NOT a required PR check: it needs the live network, and an RPC
+# outage or a scheduled testnet reset must never turn a pull request red.
+#
+# Runs:
+#   - on demand (workflow_dispatch)
+#   - weekly, to notice a testnet reset or a redeploy early
+#
+# Exit codes from scripts/check-deployment-drift.sh are the interface:
+#   0 no drift, 1 could not run, 2 a pinned contract is gone, 3 drift.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    name: deployment-drift
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the SDK
+        run: npm run build --workspace strata-sdk
+
+      - name: Check deployment drift
+        run: npm run check:drift

@@ -17,11 +17,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit --project tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:integration": "vitest run --dir test --testNamePattern . --include \"test/**/*.integration.test.ts\" --passWithNoTests"
+    "test:integration": "vitest run --config vitest.integration.config.ts"
   },
   "dependencies": {
     "@stellar/stellar-sdk": "17.2.1"

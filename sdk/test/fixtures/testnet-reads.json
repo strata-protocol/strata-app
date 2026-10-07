@@ -1,0 +1,248 @@
+{
+  "$comment": [
+    "Real read responses captured from the deployed testnet manager. Not hand-written.",
+    "Amounts are base-unit strings so the file stays JSON-safe; the SDK returns bigint.",
+    "Captured with createStrataClient() against the pinned RPC endpoint (see docs/stack.md)."
+  ],
+  "provenance": {
+    "capturedAtUtc": "2026-10-07T08:29:58.224Z",
+    "network": "Test SDF Network ; September 2015",
+    "rpcUrl": "https://soroban-testnet.stellar.org",
+    "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+    "latestLedger": 5067642
+  },
+  "data": {
+    "currentEpoch": {
+      "kind": "ok",
+      "value": {
+        "junior_paid": "999827180",
+        "junior_payout": "999827180",
+        "junior_total": "1000000000",
+        "junior_unclaimed": "0",
+        "maturity_ts": "1791205482",
+        "max_senior_ratio_bps": 10000,
+        "rate_bps": 10000,
+        "senior_paid": "1000009512",
+        "senior_payout": "1000009512",
+        "senior_total": "1000000000",
+        "senior_unclaimed": "0",
+        "start_ts": "1791205182",
+        "status": {
+          "tag": "Closed"
+        },
+        "term_seconds": "300",
+        "value_redeemed": "1999836692",
+        "vault_shares": "0"
+      },
+      "rpcUrl": "https://soroban-testnet.stellar.org",
+      "networkPassphrase": "Test SDF Network ; September 2015",
+      "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+      "ledger": 5067641,
+      "fetchedAt": "2026-10-07T08:29:53.670Z"
+    },
+    "managerConfig": {
+      "kind": "ok",
+      "value": {
+        "admin": "GBIMKBYJVP3VNFJPU45XMGBKHLESO5QLUYWAAMMRMGTPDF6NUD5OWRIP",
+        "vault": "CDWJS65BA26QBTA4L6LBX76B2XPGAQHY25USI6Z3MSQ73T5NQTXARSQ6",
+        "asset": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+      },
+      "rpcUrl": "https://soroban-testnet.stellar.org",
+      "networkPassphrase": "Test SDF Network ; September 2015",
+      "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+      "ledger": 5067641,
+      "fetchedAt": "2026-10-07T08:29:53.676Z"
+    },
+    "tokenDecimals": {
+      "kind": "ok",
+      "value": 7,
+      "rpcUrl": "https://soroban-testnet.stellar.org",
+      "networkPassphrase": "Test SDF Network ; September 2015",
+      "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+      "ledger": 5067641,
+      "fetchedAt": "2026-10-07T08:29:53.679Z"
+    },
+    "seniorRoom": {
+      "kind": "ok",
+      "value": "0",
+      "rpcUrl": "https://soroban-testnet.stellar.org",
+      "networkPassphrase": "Test SDF Network ; September 2015",
+      "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+      "ledger": 5067641,
+      "fetchedAt": "2026-10-07T08:29:53.733Z"
+    },
+    "secondsToMaturity": {
+      "kind": "ok",
+      "value": "0",
+      "rpcUrl": "https://soroban-testnet.stellar.org",
+      "networkPassphrase": "Test SDF Network ; September 2015",
+      "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+      "ledger": 5067641,
+      "fetchedAt": "2026-10-07T08:29:53.734Z"
+    },
+    "projections": [
+      {
+        "value": "2000204528",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "1000195016",
+            "senior_due": "1000009512",
+            "senior_payout": "1000009512"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:54.608Z"
+        }
+      },
+      {
+        "value": "2000000000",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "999990488",
+            "senior_due": "1000009512",
+            "senior_payout": "1000009512"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:54.824Z"
+        }
+      },
+      {
+        "value": "1999836692",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "999827180",
+            "senior_due": "1000009512",
+            "senior_payout": "1000009512"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:55.217Z"
+        }
+      },
+      {
+        "value": "1000009512",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "0",
+            "senior_due": "1000009512",
+            "senior_payout": "1000009512"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:55.437Z"
+        }
+      },
+      {
+        "value": "1000009511",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "0",
+            "senior_due": "1000009512",
+            "senior_payout": "1000009511"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:55.689Z"
+        }
+      },
+      {
+        "value": "0",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "junior_payout": "0",
+            "senior_due": "1000009512",
+            "senior_payout": "0"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:55.909Z"
+        }
+      }
+    ],
+    "positions": [
+      {
+        "who": "GA7YTWEK2EKB5KRRE4ZQMIQKIVZ4AGYU35IKT5XKOQPNXUWQWSMRHBB6",
+        "tranche": "Senior",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "estimated_payout": "0",
+            "principal": "0"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:56.342Z"
+        }
+      },
+      {
+        "who": "GA7YTWEK2EKB5KRRE4ZQMIQKIVZ4AGYU35IKT5XKOQPNXUWQWSMRHBB6",
+        "tranche": "Junior",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "estimated_payout": "0",
+            "principal": "0"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:56.654Z"
+        }
+      },
+      {
+        "who": "GAS6OUIK657OS6DY47DDFTXJNE3DZBUUSS5ZSCQAVFW6D6UXSBMWNVXK",
+        "tranche": "Senior",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "estimated_payout": "0",
+            "principal": "0"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067641,
+          "fetchedAt": "2026-10-07T08:29:56.951Z"
+        }
+      },
+      {
+        "who": "GAS6OUIK657OS6DY47DDFTXJNE3DZBUUSS5ZSCQAVFW6D6UXSBMWNVXK",
+        "tranche": "Junior",
+        "result": {
+          "kind": "ok",
+          "value": {
+            "estimated_payout": "0",
+            "principal": "0"
+          },
+          "rpcUrl": "https://soroban-testnet.stellar.org",
+          "networkPassphrase": "Test SDF Network ; September 2015",
+          "managerId": "CB57H6NE7CIPHEDO2HJT7IX55NHP6RXI2EPSUIGK65NLG5CCXC4JB7QU",
+          "ledger": 5067642,
+          "fetchedAt": "2026-10-07T08:29:57.247Z"
+        }
+      }
+    ]
+  }
+}
