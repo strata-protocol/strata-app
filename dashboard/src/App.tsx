@@ -1,12 +1,18 @@
 import { useMemo, useState } from 'react';
 
-import { createStrataClient, type StrataNetworkConfig } from 'strata-sdk';
+import { createStrataClient, type Epoch, type StrataNetworkConfig } from 'strata-sdk';
 
 import { ConfigPanel } from './components/ConfigPanel';
 import { EpochPanel } from './components/EpochPanel';
+import { PositionPanel } from './components/PositionPanel';
 import { TestnetBanner } from './components/TestnetBanner';
 import { pinnedDefaults } from './config';
 import { useStrataRead } from './useStrataRead';
+
+/** `'Open' | 'Settled' | 'Closed'`, or `null` while the epoch is still unknown. */
+function statusTagOf(epoch: Epoch | null): 'Open' | 'Settled' | 'Closed' | null {
+  return epoch === null ? null : (epoch.status.tag as 'Open' | 'Settled' | 'Closed');
+}
 
 /**
  * Read-only dashboard for the pinned Strata testnet deployment.
@@ -34,6 +40,8 @@ export function App({ config }: { config: StrataNetworkConfig }) {
   const decimals =
     decimalsRead.result?.kind === 'ok' ? decimalsRead.result.value : config.tokenDecimals;
 
+  const epoch = epochRead.result?.kind === 'ok' ? epochRead.result.value : null;
+
   return (
     <>
       <TestnetBanner />
@@ -42,8 +50,8 @@ export function App({ config }: { config: StrataNetworkConfig }) {
         <h1>Strata read-only testnet dashboard</h1>
         <p>
           Epoch state, a depositor’s position, and projected payouts for the pinned Strata
-          deployment on Stellar testnet. Amounts are the underlying token’s smallest unit,
-          formatted without floating point.
+          deployment on Stellar testnet. Amounts are the underlying token’s smallest unit, formatted
+          without floating point.
         </p>
         <p>
           <button type="button" onClick={bump}>
@@ -54,6 +62,13 @@ export function App({ config }: { config: StrataNetworkConfig }) {
 
       <main>
         <EpochPanel epoch={epochRead} seconds={secondsRead} decimals={decimals} />
+
+        <PositionPanel
+          client={client}
+          decimals={decimals}
+          epochStatus={statusTagOf(epoch)}
+          refreshVersion={refreshVersion}
+        />
 
         <ConfigPanel read={managerConfig} config={config} decimals={decimals} />
       </main>
