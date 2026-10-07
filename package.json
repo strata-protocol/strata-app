@@ -26,7 +26,7 @@
     "generate:sdk": "bash scripts/generate-sdk.sh",
     "check:drift": "bash scripts/check-deployment-drift.sh",
     "test:integration": "npm run test:integration --workspace strata-sdk",
-    "snapshot": "npm run snapshot --workspace scripts"
+    "snapshot": "npm run snapshot --workspace scripts --"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
