@@ -124,6 +124,17 @@ interface ClassifiedError {
   message: string;
 }
 
+/** The numeric `code` an RPC client error carries, if it carries one. */
+function errorCodeOf(error: unknown): number | null {
+  if (error !== null && typeof error === 'object' && 'code' in error) {
+    const code = (error as { code?: unknown }).code;
+    if (typeof code === 'number') {
+      return code;
+    }
+  }
+  return null;
+}
+
 function classifyError(error: unknown): ClassifiedError {
   const message = describeUnknownError(error);
   const name = error instanceof Error ? error.name : '';
@@ -131,7 +142,15 @@ function classifyError(error: unknown): ClassifiedError {
   if (/expiredstate|expired|archiv/i.test(haystack)) {
     return { kind: 'archived', message };
   }
-  if (/not found|does not exist|could not find|missing value|no such contract/i.test(haystack)) {
+  // A contract that is not deployed shows up either as an RPC 404 or, on the
+  // simulation path, as a `HostError: Error(Storage, MissingValue)` naming a
+  // non-existing contract instance.
+  if (
+    errorCodeOf(error) === 404 ||
+    /could not obtain contract|not found|does not exist|could not find|missingvalue|missing value|non-existing value|no such contract/i.test(
+      haystack,
+    )
+  ) {
     return { kind: 'not-found', message };
   }
   return { kind: 'rpc-error', message };
@@ -156,6 +175,33 @@ async function latestLedgerOrNull(server: Server): Promise<number | null> {
   }
 }
 
+/**
+ * Testnet RPC connections drop intermittently (`fetch failed`, TLS resets).
+ * That is the network, not the contract, so retry a couple of times before
+ * reporting it. A contract error or an archived entry is never retried.
+ */
+const TRANSIENT_ERROR =
+  /fetch failed|econnreset|etimedout|socket hang up|sendrequest|network error|timeout/i;
+
+async function withRetry<TValue>(operation: () => Promise<TValue>, attempts = 3): Promise<TValue> {
+  let last: unknown;
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (
+        error instanceof ContractCallError ||
+        !TRANSIENT_ERROR.test(describeUnknownError(error))
+      ) {
+        throw error;
+      }
+      last = error;
+      await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+    }
+  }
+  throw last;
+}
+
 /** Run a caller-supplied read and classify anything it throws. */
 async function runRead<TValue>(
   config: StrataNetworkConfig,
@@ -165,7 +211,7 @@ async function runRead<TValue>(
   const fetchedAt = new Date().toISOString();
 
   try {
-    const { value, ledger } = await produce();
+    const { value, ledger } = await withRetry(produce);
     return { kind: 'ok', value, ...metaOf(config, ledger, fetchedAt) };
   } catch (error) {
     const ledger = await latestLedgerOrNull(server);

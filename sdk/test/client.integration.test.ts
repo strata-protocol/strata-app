@@ -123,7 +123,6 @@ describe('failure classification', () => {
     const missing = StrKey.encodeContract(randomBytes(32));
     const missingClient = createStrataClient({ managerId: missing });
     const read = await missingClient.currentEpoch();
-    expect(read.kind).not.toBe('ok');
-    expect(['not-found', 'rpc-error']).toContain(read.kind);
+    expect(read.kind).toBe('not-found');
   });
 });
