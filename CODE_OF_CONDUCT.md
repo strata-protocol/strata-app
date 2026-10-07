@@ -1,5 +1,9 @@
 # Code of conduct
 
+> **UNAUDITED TESTNET SOFTWARE.** Strata and this repository are unaudited
+> software running on Stellar testnet. This code of conduct applies to the
+> project's community and repositories regardless.
+
 ## Our pledge
 
 We pledge to make participation in this project a harassment-free experience for
