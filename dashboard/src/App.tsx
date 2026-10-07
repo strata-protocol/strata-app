@@ -5,6 +5,7 @@ import { createStrataClient, type Epoch, type StrataNetworkConfig } from 'strata
 import { ConfigPanel } from './components/ConfigPanel';
 import { EpochPanel } from './components/EpochPanel';
 import { PositionPanel } from './components/PositionPanel';
+import { ProjectionPanel } from './components/ProjectionPanel';
 import { TestnetBanner } from './components/TestnetBanner';
 import { pinnedDefaults } from './config';
 import { useStrataRead } from './useStrataRead';
@@ -67,6 +68,13 @@ export function App({ config }: { config: StrataNetworkConfig }) {
           client={client}
           decimals={decimals}
           epochStatus={statusTagOf(epoch)}
+          refreshVersion={refreshVersion}
+        />
+
+        <ProjectionPanel
+          client={client}
+          epoch={epoch}
+          decimals={decimals}
           refreshVersion={refreshVersion}
         />
 
