@@ -66,7 +66,7 @@ export function EpochPanel({ epoch, seconds, decimals }: EpochPanelProps) {
               </table>
 
               <table>
-                <caption>Epoch figures (base units shown in brackets)</caption>
+                <caption>Epoch figures</caption>
                 <thead>
                   <tr>
                     <th scope="col">Figure</th>
