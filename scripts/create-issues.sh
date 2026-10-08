@@ -11,11 +11,15 @@
 # Usage:
 #   bash scripts/create-issues.sh --dry-run
 #   bash scripts/create-issues.sh --repo ORG/REPO
+#   bash scripts/create-issues.sh --only "Title one,Title two"
 #   bash scripts/create-issues.sh            # repo detected from gh
 #
 # Flags:
 #   --dry-run        print what would be created; make no change
 #   --repo ORG/REPO  target repository (default: gh's current repository)
+#   --only "A,B"     file only these drafts. A and B are exact titles copied
+#                    from docs/planned-issues.md, comma-separated; no draft
+#                    title contains a comma. Without --only, all 12 are filed.
 #   -h, --help       this text
 #
 # Behaviour:
@@ -30,9 +34,10 @@ set -euo pipefail
 
 DRY_RUN=0
 REPO=""
+ONLY=""
 
 usage() {
-  sed -n '2,28p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,32p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 while [ $# -gt 0 ]; do
@@ -50,6 +55,21 @@ while [ $# -gt 0 ]; do
       ;;
     --repo=*)
       REPO="${1#*=}"
+      ;;
+    --only)
+      shift
+      ONLY="${1:-}"
+      if [ -z "$ONLY" ]; then
+        echo "error: --only needs a comma-separated list of titles" >&2
+        exit 2
+      fi
+      ;;
+    --only=*)
+      ONLY="${1#*=}"
+      if [ -z "$ONLY" ]; then
+        echo "error: --only needs a comma-separated list of titles" >&2
+        exit 2
+      fi
       ;;
     -h | --help)
       usage
@@ -145,6 +165,20 @@ fi
 
 CREATED=0
 SKIPPED=0
+SELECTED=0
+
+# is_selected TITLE — true when TITLE is inside --only, and always true when
+# --only is unset. The comparison is exact: the list is padded with commas, so
+# "Foo" matches the entry "Foo" and never a longer title that contains it.
+is_selected() {
+  if [ -z "$ONLY" ]; then
+    return 0
+  fi
+  case ",$ONLY," in
+    *",$1,"*) return 0 ;;
+  esac
+  return 1
+}
 
 # create_issue TITLE LABELS COMPLEXITY DRIPS BODY
 # LABELS is comma-separated and must not include the drips label; it is added.
@@ -155,6 +189,13 @@ create_issue() {
   drips="$4"
   body="$5"
   all_labels="$labels,$drips"
+
+  # With --only, a draft that was not asked for is skipped silently, so the
+  # dry run lists the requested issues and nothing else.
+  if ! is_selected "$title"; then
+    return 0
+  fi
+  SELECTED=$((SELECTED + 1))
 
   full_body="$body
 
@@ -519,6 +560,19 @@ create_issue \
   "enhancement,accessibility,good first issue" \
   "Medium" "drips:3" \
   "$body"
+
+# With --only, fail loudly if a requested title matched no draft, so a typo
+# cannot look like a successful run that filed fewer issues. Run --dry-run
+# first: this check runs after the issue loop.
+if [ -n "$ONLY" ]; then
+  only_nocommas="${ONLY//,/}"
+  only_count=$((${#ONLY} - ${#only_nocommas} + 1))
+  if [ "$SELECTED" -ne "$only_count" ]; then
+    echo "error: --only listed $only_count title(s) but $SELECTED matched a draft." >&2
+    echo "       --only entries must match docs/planned-issues.md titles exactly." >&2
+    exit 1
+  fi
+fi
 
 echo
 if [ "$DRY_RUN" -eq 1 ]; then
