@@ -30,23 +30,34 @@ review.
 
 ## Reporting a vulnerability
 
-Do not open a public issue.
+Do not open a public issue for a security problem.
 
-Email the maintainers, or use GitHub's private vulnerability reporting on this
-repository if it is enabled. **TODO(maintainer): add the security contact
-address.**
+Report it privately through GitHub:
+
+1. Go to the **Security** tab of this repository.
+2. Click **Report a vulnerability**.
+3. Fill in the form.
 
 Please include:
 
-- what an attacker can do, and what they need in order to do it
-- steps to reproduce, or the request sequence if it is an RPC or SDK issue
-- which pinned deployment and ledger you observed it on
+- what an attacker can do, who would be affected, and what they need in order
+  to do it
+- exact steps, a failing test or a script that reproduces the problem, or the
+  request sequence if it is an RPC or SDK issue
+- the commit hash or release tag you tested, and which pinned deployment and
+  ledger you observed it on
+
+Out of scope: testnet resets or RPC outages, and the open risks already listed
+in `docs/risks.md`, unless you have a new reproduction or a change in severity.
 
 ### What to expect
 
-Unfixed, no SLA. This is an unaudited testnet project maintained in the open,
-and the maintainers are volunteers. **TODO(maintainer): confirm the response
-time you are willing to commit to, and put it here.**
+We aim to acknowledge reports within 7 days and to send a status update within
+14 days. Strata is unaudited, testnet-only software maintained by a small team,
+so we cannot promise a fix timeline.
+
+Fixes carry no SLA. This is an unaudited testnet project maintained in the
+open, and the maintainers are volunteers.
 
 We will acknowledge a report, and we will say so if we cannot fix something.
 Takedown requests against an honest disclosure of an unaudited testnet project
@@ -81,7 +92,7 @@ In scope: this repository — the SDK, the dashboard, the scripts, and CI.
 Out of scope: the contracts themselves, which live in the **strata-contracts**
 repository and carry their own risk register at
 `strata-contracts/docs/risks.md`. A bug in the settlement maths is a
-strata-contracts report.
+strata-contracts report. Report it through that repository's Security tab.
 
 ## Responsible disclosure
 
