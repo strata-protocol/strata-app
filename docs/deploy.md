@@ -145,9 +145,12 @@ which of the two happened.
 npm run dev --workspace strata-dashboard     # http://localhost:5173
 npm run preview --workspace strata-dashboard # serves the built output
 ```
+## Hosted demo
 
-## Not done here
+The dashboard is deployed to GitHub Pages by `.github/workflows/pages.yml` on
+every push to `main`:
 
-GitHub Pages is wired up in `.github/workflows/pages.yml`, but a maintainer
-still has to enable Pages once (Settings → Pages → Source = GitHub Actions).
-The live demo URL is `TODO(maintainer)` in the README until then.
+**https://strata-protocol.github.io/strata-app/**
+
+Pages was enabled once under Settings → Pages → Source = GitHub Actions. To
+redeploy without a code change, run the workflow manually from the Actions tab.
