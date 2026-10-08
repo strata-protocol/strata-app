@@ -28,10 +28,25 @@ dist/assets/*.css
 ```
 
 Serve that directory as the site root. `index.html` references its assets with
-absolute `/assets/...` paths, so the site must be served from the root of a
-host. A site served from a subdirectory (a project page, for instance) needs a
-`base` setting in `dashboard/vite.config.ts`; that is a one-line change and is
-not made here because the target host is not chosen yet.
+absolute paths derived from Vite's `base`.
+
+### Base path
+
+Vite's `base` comes from the `VITE_BASE_PATH` environment variable and defaults
+to `/`:
+
+```sh
+# a host that serves the site from its domain root
+npm run build --workspace strata-dashboard
+
+# a host that serves it from a sub-path, e.g. a project Pages site
+VITE_BASE_PATH=/strata-app/ npm run build --workspace strata-dashboard
+```
+
+A host that serves the site from the domain root needs nothing: `/` is the
+default, so the plain build is correct for Netlify, Vercel, Cloudflare Pages,
+S3, or any other static host that serves the site at `/`. Only a host that
+serves the site from a sub-path needs `VITE_BASE_PATH` set to that sub-path.
 
 ## No environment file is required
 
@@ -66,6 +81,33 @@ Because these are baked into the bundle, they are public. There is nothing
 secret here and nothing secret should ever be added. The app refuses to start
 if the passphrase is not testnet, so a mis-set override produces a refusal, not
 a silent connection to another network.
+
+## GitHub Pages
+
+The dashboard publishes to GitHub Pages from `.github/workflows/pages.yml`.
+The workflow builds the dashboard with the base path taken from the repository
+name in the workflow context, uploads `dashboard/dist` as a Pages artifact, and
+deploys it with the official Pages actions. It runs on pushes to `main` and on
+demand, and it is not a required status check, so a Pages outage cannot block a
+pull request.
+
+Expected URL for this repository:
+
+```
+https://strata-protocol.github.io/strata-app/
+```
+
+The workflow builds under `/strata-app/`, which is exactly this repository's
+name, so no name is hardcoded in the workflow or in `vite.config.ts`.
+
+**One-time human step.** In the repository, open **Settings → Pages**, and
+under **Build and deployment → Source** select **GitHub Actions**. The workflow
+cannot enable Pages itself; that needs a token with Pages write access, which
+is deliberately not wired up here. Until the source is set, the Pages steps
+cannot complete.
+
+The dashboard reads the testnet RPC from the Pages origin. That path is only
+exercised once the site is live, and it is not tested from that origin here.
 
 ## Host checklist
 
@@ -106,5 +148,6 @@ npm run preview --workspace strata-dashboard # serves the built output
 
 ## Not done here
 
-This guide does not deploy anything. Publishing is a decision for the
-maintainer, and the demo URL is `TODO(maintainer)` in the README.
+GitHub Pages is wired up in `.github/workflows/pages.yml`, but a maintainer
+still has to enable Pages once (Settings → Pages → Source = GitHub Actions).
+The live demo URL is `TODO(maintainer)` in the README until then.

@@ -59,16 +59,26 @@ if (!readme.includes('OWNER')) {
 }
 
 const count = readme.split('OWNER').length - 1;
-const updated = readme.replaceAll(
-  /https:\/\/github\.com\/OWNER\/[A-Za-z0-9_.-]+/g,
-  `https://github.com/${owner}`,
-);
+const updated = readme
+  // a link to the owner's page, e.g. https://github.com/OWNER/<repo>/graphs/contributors
+  .replaceAll(/https:\/\/github\.com\/OWNER\/[A-Za-z0-9_.-]+/g, `https://github.com/${owner}`)
+  // a badge that names the repository, e.g. https://contrib.rocks/image?repo=OWNER/<repo>
+  .replaceAll(`repo=OWNER/${repo}`, `repo=${owner}/${repo}`);
 
 if (checkOnly) {
   console.log(`Would replace ${count} OWNER placeholder(s) in README.md with ${owner}.`);
   process.exit(0);
 }
 
+const remaining = updated.split('OWNER').length - 1;
+
 writeFileSync(readmePath, updated);
-console.log(`Replaced ${count} OWNER placeholder(s) in README.md with ${owner}/${repo}.`);
+console.log(
+  `Replaced ${count - remaining} OWNER placeholder(s) in README.md with ${owner}/${repo}.`,
+);
+if (remaining > 0) {
+  console.warn(
+    `Warning: ${remaining} OWNER placeholder(s) remain; check for a form this script does not know.`,
+  );
+}
 console.log('Review the diff, then commit README.md.');
