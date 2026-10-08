@@ -1,0 +1,72 @@
+name: Deploy dashboard to GitHub Pages
+
+# Publishes the read-only dashboard to GitHub Pages. It is deliberately NOT a
+# required status check: hosting is not part of the correctness contract, and a
+# Pages outage must not be able to block a pull request. It runs only on pushes
+# to main and on demand.
+#
+# The one-time human step is: Settings -> Pages -> Source = "GitHub Actions".
+# See docs/deploy.md.
+#
+# No secrets are referenced here. The deploy uses the OIDC token minted by the
+# `id-token: write` permission below.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: read the repository, publish to Pages, and mint the OIDC
+# token the deploy step exchanges. Nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One Pages deployment at a time. Do not cancel an in-progress run: cancelling
+# mid-deploy can leave the live site half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # A single job. Its name is `deploy`, not `build`, so it can never collide with
+  # the required `build` check in ci.yml.
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the dashboard
+        # A project Pages site is served from /<repo>/, so the Vite base path is
+        # the repository name. It is taken from the workflow context and is
+        # never hardcoded here.
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build --workspace strata-dashboard
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload the dashboard build
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dashboard/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
