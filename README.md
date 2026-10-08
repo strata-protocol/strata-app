@@ -11,6 +11,9 @@
 A typed, read-only TypeScript SDK and a static dashboard for the Strata tranche
 wrapper on Stellar Soroban.
 
+**Live demo:** https://strata-protocol.github.io/strata-app/ (Stellar testnet
+only, unaudited).
+
 Strata wraps a Soroban vault and splits the yield of one fixed-term epoch into
 two tranches. The senior tranche earns a fixed target rate, is paid first, and
 is protected by the junior buffer. The junior tranche earns everything above
@@ -140,7 +143,7 @@ An item is marked done only if it was actually run.
 | Weekly drift workflow | done | Manual and weekly |
 | Documentation | done | `docs/` |
 | Issue backlog | done | 12 drafts in `docs/planned-issues.md` |
-| Hosted demo | **not done** | Not deployed; URL is `TODO(maintainer)` |
+| Hosted demo | done | Deployed to GitHub Pages; loaded live testnet data in a browser |
 | Wallet connection | not started | Out of scope; issue drafted |
 | Deposit, claim, settle flows | not started | Out of scope; issues drafted |
 | Epoch and event history | not started | Needs an indexer; issue drafted |
@@ -242,16 +245,24 @@ an issue draft in `docs/planned-issues.md`, never a stub.
 
 ---
 
+## Maintainers
+
+| Name | GitHub | Contact |
+| --- | --- | --- |
+| Your name | [@sulaimonifeoluwa4-blip](https://github.com/sulaimonifeoluwa4-blip) | Telegram: @sulaimonifeoluwa |
+
+Community: <a href="https://t.me/+N9ZmMAjKnCpjZWI8">
+
+---
+
 ## Credits
 
-<!-- The repository owner below is a placeholder. It must match the owner in
-     `git remote get-url origin`; the owner is being changed, so nothing in this
-     repository hardcodes it. Run `npm run credits:link` after the rename and
-     it will fill these links in from the remote. -->
+<!-- Owner and repo in these links come from `git remote get-url origin`.
+     `npm run credits:link` regenerates them if the repository moves. -->
 
 Contributors:
 
-<a href="https://github.com/strata-protocol/graphs/contributors">
+<a href="https://github.com/strata-protocol/strata-app/graphs/contributors">
   <img
     src="https://contrib.rocks/image?repo=strata-protocol/strata-app"
     alt="Contributors to strata-app"
