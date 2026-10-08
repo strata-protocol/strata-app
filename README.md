@@ -142,7 +142,7 @@ An item is marked done only if it was actually run.
 | Live integration workflow | done | Manual, not a required check |
 | Weekly drift workflow | done | Manual and weekly |
 | Documentation | done | `docs/` |
-| Issue backlog | done | 12 drafts in `docs/planned-issues.md` |
+| Issue backlog | in progress | 6 of 12 drafts filed as issues; 6 still drafted in `docs/planned-issues.md` |
 | Hosted demo | done | Deployed to GitHub Pages; loaded live testnet data in a browser |
 | Wallet connection | not started | Out of scope; issue drafted |
 | Deposit, claim, settle flows | not started | Out of scope; issues drafted |
