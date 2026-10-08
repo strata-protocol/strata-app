@@ -251,9 +251,9 @@ an issue draft in `docs/planned-issues.md`, never a stub.
 
 Contributors:
 
-<a href="https://github.com/OWNER/strata-app/graphs/contributors">
+<a href="https://github.com/strata-protocol/graphs/contributors">
   <img
-    src="https://contrib.rocks/image?repo=OWNER/strata-app"
+    src="https://contrib.rocks/image?repo=strata-protocol/strata-app"
     alt="Contributors to strata-app"
   />
 </a>
