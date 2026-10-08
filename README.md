@@ -1,5 +1,11 @@
 # Strata app
 
+[![CI](https://img.shields.io/github/actions/workflow/status/strata-protocol/strata-app/ci.yml?branch=main&logo=github&label=CI)](https://github.com/strata-protocol/strata-app/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![Stellar](https://img.shields.io/badge/Stellar-Soroban-7d00ff?logo=stellar&logoColor=white)](https://developers.stellar.org/docs/build/smart-contracts)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](docs/stack.md)
+[![testnet only](https://img.shields.io/badge/network-testnet%20only-orange)](SECURITY.md)
+
 > ## Disclaimer
 >
 > **Strata is unaudited and testnet-only.** Nothing in this repository has been
