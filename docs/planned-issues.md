@@ -19,6 +19,7 @@ session, `drips:5` is a day, `drips:8` is larger than a day.
 
 **Labels:** `enhancement`, `needs-design`
 **Complexity:** `drips:8`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -51,6 +52,7 @@ signing needs its own review before it happens.
 
 **Labels:** `enhancement`, `needs-design`
 **Complexity:** `drips:8`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -84,6 +86,7 @@ separate threat review.
 
 **Labels:** `enhancement`, `needs-design`
 **Complexity:** `drips:5`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -108,6 +111,7 @@ Let a depositor claim a settled payout from the position panel.
 
 **Labels:** `enhancement`, `admin-only`, `needs-design`
 **Complexity:** `drips:5`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -137,6 +141,7 @@ settlement. The error surface matters here more than the happy path.
 
 **Labels:** `enhancement`
 **Complexity:** `drips:8`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -163,6 +168,7 @@ can read RPC history for a bounded range; a full history needs a backend.
 
 **Labels:** `enhancement`
 **Complexity:** `drips:5`
+**Status:** Filed as [#4](https://github.com/strata-protocol/strata-app/issues/4)
 
 ### Summary
 
@@ -191,6 +197,7 @@ exactly like a right one.
 
 **Labels:** `enhancement`, `good first issue`
 **Complexity:** `drips:3`
+**Status:** Filed as [#5](https://github.com/strata-protocol/strata-app/issues/5)
 
 ### Summary
 
@@ -215,6 +222,7 @@ CSS in `dashboard/src/styles.css`. No layout library is wanted.
 
 **Labels:** `testing`
 **Complexity:** `drips:5`
+**Status:** Planned, not yet filed
 
 ### Summary
 
@@ -242,6 +250,7 @@ Vitest, jsdom or a headless browser, the existing live test config.
 
 **Labels:** `enhancement`, `performance`
 **Complexity:** `drips:1`
+**Status:** Filed as [#6](https://github.com/strata-protocol/strata-app/issues/6)
 
 ### Summary
 
@@ -265,6 +274,7 @@ Vite build configuration, dynamic import.
 
 **Labels:** `enhancement`, `good first issue`
 **Complexity:** `drips:1`
+**Status:** Filed as [#7](https://github.com/strata-protocol/strata-app/issues/7)
 
 ### Summary
 
@@ -288,6 +298,7 @@ Make it easy to attach that output to a bug report.
 
 **Labels:** `enhancement`
 **Complexity:** `drips:1`
+**Status:** Filed as [#8](https://github.com/strata-protocol/strata-app/issues/8)
 
 ### Summary
 
@@ -312,6 +323,7 @@ React, CSS.
 
 **Labels:** `enhancement`, `accessibility`, `good first issue`
 **Complexity:** `drips:3`
+**Status:** Filed as [#9](https://github.com/strata-protocol/strata-app/issues/9)
 
 ### Summary
 
