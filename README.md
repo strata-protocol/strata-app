@@ -251,7 +251,7 @@ an issue draft in `docs/planned-issues.md`, never a stub.
 | --- | --- | --- |
 | Your name | [@sulaimonifeoluwa4-blip](https://github.com/sulaimonifeoluwa4-blip) | Telegram: @sulaimonifeoluwa |
 
-Community: <a href="https://t.me/+N9ZmMAjKnCpjZWI8">
+Community: [telegram](https://t.me/+N9ZmMAjKnCpjZWI8)
 
 ---
 
