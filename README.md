@@ -1,4 +1,4 @@
-# Strata app
+# Strata app — TypeScript SDK and read-only dashboard for the Strata tranche wrapper, Soroban contracts on Stellar
 
 [![CI](https://img.shields.io/github/actions/workflow/status/strata-protocol/strata-app/ci.yml?branch=main&logo=github&label=CI)](https://github.com/strata-protocol/strata-app/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -13,9 +13,6 @@
 > **testnet** and nothing else. It has no mainnet code path and no mainnet
 > network option. **It never moves funds**: it reads contract state and renders
 > it. Do not put real funds into Strata.
-
-A typed, read-only TypeScript SDK and a static dashboard for the Strata tranche
-wrapper on Stellar Soroban.
 
 **Live demo:** https://strata-protocol.github.io/strata-app/ (Stellar testnet
 only, unaudited).
